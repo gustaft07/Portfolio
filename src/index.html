@@ -1,200 +1,415 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" data-bs-theme="dark">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <title>Gustavo Oliveira | Dev Portfolio</title>
+  
+  <!-- Bootstrap 5.3.3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --main-red: #e31b23;
+      --hover-red: #b3151a;
+      --bg-dark-1: #121212;
+      --bg-dark-2: #1e1e1e;
+      --font-family: 'Poppins', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-dark-1);
+      color: #e0e0e0;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .text-justify { text-align: justify; }
+    
+    /* Navbar */
+    .navbar {
+      background-color: rgba(18, 18, 18, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(227, 27, 35, 0.2) !important;
+    }
+
+    .nav-link {
+      position: relative;
+      font-weight: 400;
+      font-size: 0.95rem;
+      color: #fff !important;
+      margin: 0 5px;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      left: 50%;
+      bottom: 0;
+      background-color: var(--main-red);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover::after {
+      width: 80%;
+    }
+
+    /* Foto de Perfil */
+    .foto-perfil {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--bg-dark-2);
+      outline: 2px solid rgba(227, 27, 35, 0.5);
+      box-shadow: 0 10px 40px rgba(227, 27, 35, 0.25);
+      transition: all 0.4s ease;
+    }
+
+    .foto-perfil:hover {
+      transform: scale(1.03) translateY(-5px);
+      box-shadow: 0 15px 50px rgba(227, 27, 35, 0.4);
+      outline: 2px solid var(--main-red);
+    }
+
+    /* Botões */
+    .btn-danger {
+      background-color: var(--main-red);
+      border-color: var(--main-red);
+    }
+    .btn-danger:hover {
+      background-color: var(--hover-red);
+      border-color: var(--hover-red);
+    }
+
+    /* Cards */
+    .card-projeto {
+      background-color: var(--bg-dark-2);
+      border: 1px solid rgba(227, 27, 35, 0.1);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .card-projeto:hover {
+      transform: translateY(-10px);
+      border-color: rgba(227, 27, 35, 0.5);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .card-projeto .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+
+    /* Divisória */
+    .fancy-hr {
+      border: 0;
+      height: 1px;
+      background-image: linear-gradient(to right, rgba(227, 27, 35, 0), rgba(227, 27, 35, 0.4), rgba(227, 27, 35, 0));
+      margin: 4rem 0;
+      opacity: 1;
+    }
+
+    /* Tech Badges */
+    .tech-badge {
+      font-size: 0.75rem;
+      background-color: rgba(227, 27, 35, 0.1);
+      color: var(--main-red);
+      border: 1px solid rgba(227, 27, 35, 0.2);
+      padding: 0.25rem 0.6rem;
+      border-radius: 50px;
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+
+    /* Modo Claro */
+    [data-bs-theme="light"] body {
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    [data-bs-theme="light"] .navbar {
+      background-color: rgba(255, 255, 255, 0.95);
+    }
+    [data-bs-theme="light"] .nav-link {
+      color: #333 !important;
+    }
+    [data-bs-theme="light"] .card-projeto {
+      background-color: #fff;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    [data-bs-theme="light"] .foto-perfil {
+      border: 4px solid #fff;
+    }
+    [data-bs-theme="light"] .tech-badge {
+      background-color: rgba(227, 27, 35, 0.05);
+    }
+  </style>
 </head>
-<style>
-  html {
-    scroll-behavior: smooth;
-    margin: 0;
-  }
-
-  body {
-    background-color: rgb(36, 36, 36);
-    color: white;
-
-  }
-
-  .navbar-nav .nav-link {
-    position: relative;
-    color: white;
-  }
-
-  .navbar-nav .nav-link:hover {
-    color: #a10000;
-  }
-
-  .navbar-nav .nav-link::after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 2px;
-    left: 0;
-    bottom: 0;
-    background-color: #a10000;
-    transition: width 1s ease;
-  }
-
-  .navbar-nav .nav-link:hover::after {
-    width: 100%;
-  }
-
-  .foto-perfil {
-    width: 300px;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 10px 25px #a10000;
-    transition: 0.7s;
-  }
-
-  .foto-perfil:hover {
-    transform: scale(1.05);
-  }
-
-  .text-justify {
-    text-align: justify !important;
-  }
-</style>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light border-bottom border-2 border-danger sticky-top"
-    style="background-color: rgb(36, 36, 36);">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#"></a>
-      <button class="navbar-toggler bg-secondary align-self-end" type="button" data-bs-toggle="collapse"
-        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
+    <div class="container">
+      <a class="navbar-brand text-danger fw-bold" href="#">GUSTAVO<span class="fw-light text-reset">.dev</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse text-center" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#sobre">Sobre</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#formação">Formações</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#projetos">Projetos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#contato">Contatos</a>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center gap-1 text-center py-3 py-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#sobre" data-en="About" data-pt="Sobre">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link" href="#formacao" data-en="Education" data-pt="Formações">Formações</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projetos" data-en="Projects" data-pt="Projetos">Projetos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contato" data-en="Contact" data-pt="Contatos">Contatos</a></li>
+          
+          <li class="nav-item ms-lg-3 d-flex gap-2 justify-content-center mt-3 mt-lg-0">
+            <button class="btn btn-sm btn-outline-light rounded-pill px-3" id="btn-lang" onclick="toggleLanguage()">EN</button>
+            <button class="btn btn-sm btn-outline-light rounded-circle" id="btn-theme" onclick="toggleTheme()">
+              <i class="bi bi-sun-fill"></i>
+            </button>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  <div class="container md-5 mt-4 mb-5" id="sobre">
-    <div class="row align-items-center g-5">
 
+  <!-- Seção Sobre Mim -->
+  <main class="container py-5 my-4" id="sobre">
+    <div class="row align-items-center g-5">
       <div class="col-md-5 text-center">
-        <a href="https://github.com/gustaft07" target="_blank">
-          <img src="img/eu.jpeg" class="foto-perfil" alt="Minha foto">
+        <a href="https://github.com/gustaft07" target="_blank" rel="noopener">
+          <img src="img/eu.jpeg" class="foto-perfil" alt="Gustavo Oliveira">
         </a>
       </div>
       <div class="col-md-7">
-        <h2 class="text-center text-danger">
-          Sobre Mim
-        </h2>
-        <p class="text-justify fw-light ">
-          Sou estudante da FATEC Prof. Jessen Vidal, com formação no ensino médio integrado ao curso técnico pela ETEC.
-          Tenho grande interesse na área de desenvolvimento e estou sempre buscando evoluir minhas habilidades e
-          aprender
-          novas tecnologias.
-        </p>
-        <p class="text-justify fw-light text">
-          Possuo conhecimentos em HTML, CSS e Bootstrap para criação de interfaces modernas e responsivas, além de
-          experiência com Tailwind CSS. No back-end, trabalho com Python utilizando o framework Flask, e também tenho
-          conhecimentos em banco de dados com MySQL.
-        </p>
-        <p class="text-justify fw-light">
-          Estou em constante aprendizado e motivado a desenvolver projetos que unam design, funcionalidade e boas
-          práticas
-          de programação.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="pt-4 ps-5" id="formação">
-    <h2 class="ps-3 text-danger mt-5">
-      Formações
-    </h2>
-    <ul class="ms-3  fw-light">
-      <li>Ensino Médio Integrado ao Técnico em Desenvolvimento de Sistemas | ETEC Machado de Assis</li>
-      <li>Desenvolvimento de Software Multiplataforma | Fatec Prof. Jessen Vidal(Em andamento)</li>
-    </ul>
-  </div>
-  <div class="pt-4 ps-5">
-    <h2 class="ps-3 text-danger mt-5">
-      Cursos
-    </h2>
-    <ul class="ms-3  fw-light">
-      <li>Logica de Programação | Alura</li>
-      <li>Python - Funções, Condicionais, Laços, Primeira Aplicação | Alura</li>
-      <li>Git e GitHub | Alura</li>
-      <li>HTML, CSS e JS | Fatec/Etec</li>
-    </ul>
-  </div>
-  <div class="pt-4 ps-5" id="projetos">
-    <h2 class="ps-3 text-danger mt-5">
-      Projetos
-    </h2>
-    <div class="d-flex flex-wrap mt-5 ms-3 justify-content-center">
-      <div class="card bg-dark text-white border-danger ms-3 mb-5" style="width: 18rem;">
-        <img src="img/cafe.jpg" class="card-img-top" alt="Thumbnail do Projeto">
-
-        <div class="card-body">
-          <h5 class="card-title">Cafeteria Ficticia</h5>
-          <p class="card-text">Um site feito como atividade, para uma cafeteria ficticia, utilizado HTML e CSS, e o
-            vercel para a hospedação.</p>
-
-          <a href="https://1-dsm-1-sem.vercel.app/index.html" class="btn btn-outline-danger" target="_blank">Visualizar
-            Projeto</a>
+        <h6 class="text-danger fw-bold text-uppercase mb-2" data-en="Introduction" data-pt="Introdução">Introdução</h6>
+        <h2 class="display-5 fw-bold mb-4" data-en="About Me" data-pt="Sobre Mim">Sobre Mim</h2>
+        <div id="about-text" class="text-secondary lh-lg fw-light">
+          <p class="text-justify" data-lang="pt">
+            Sou estudante da FATEC Prof. Jessen Vidal, com formação no ensino médio integrado ao curso técnico pela ETEC. 
+            Tenho grande interesse na área de desenvolvimento e estou sempre buscando evoluir minhas habilidades e aprender novas tecnologias.
+          </p>
+          <p class="text-justify" data-lang="pt">
+            Possuo conhecimentos em <strong>HTML, CSS e Bootstrap</strong> para criação de interfaces modernas e responsivas, além de experiência com <strong>Tailwind CSS</strong>. 
+            No back-end, trabalho com <strong>Python</strong> utilizando o framework <strong>Flask</strong>, e também tenho conhecimentos em banco de dados com <strong>MySQL</strong>.
+          </p>
         </div>
-      </div>
-
-      <div class="card bg-dark text-white border-danger ms-3 mb-5" style="width: 18rem;">
-        <img src="img/api1.png" class="card-img-top" alt="Thumbnail do Projeto">
-
-        <div class="card-body">
-          <h5 class="card-title">API Radar Cidadão</h5>
-          <p class="card-text">Projeto API Radar Cidadão. Projeto do 1°Sem. de DSM, feito para auxiliar a vizualização
-            de dados de deputados para eleitores</p>
-
-          <a href="https://github.com/APILumina/API1_DSM_Lumina" class="btn btn-outline-danger"
-            target="_blank">Visualizar
-            Projeto</a>
+        
+        <div class="mt-5">
+          <a href="documentos/Curriculum.pdf" download="Curriculo_Gustavo_Oliveira.pdf" class="btn btn-danger btn-lg rounded-pill shadow px-4" id="btn-cv">
+            <i class="bi bi-file-earmark-arrow-down-fill me-2"></i>Download CV
+          </a>
         </div>
       </div>
     </div>
-    <div class="container my-5 py-5 text-white">
-      <div class="row justify-content-center">
-        <div class="col-md-8 text-center">
-          <h2>Contato</h2>
-          <p>Gostou do meu trabalho? Vamos conversar sobre o seu próximo projeto!</p>
+  </main>
 
-          <div class="d-flex justify-content-center gap-3 flex-wrap" id="contato">
-            <a href="https://www.instagram.com/gu_oliveira07/" target="_blank" class="btn btn-outline-danger btn-lg">
-              Instagram
-            </a>
-            <a href="https://www.linkedin.com/in/gustavo-oliveira-1056303a8/" target="_blank"
-              class="btn btn-outline-danger btn-lg">
-              LinkedIn
-            </a>
-            <a href="https://github.com/gustaft07" target="_blank" class="btn btn-outline-danger btn-lg">
-              GitHub
+  <hr class="fancy-hr">
+
+  <!-- Seção de Formações e Cursos -->
+  <section class="container py-4" id="formacao">
+    <div class="row g-5">
+      <div class="col-md-6">
+        <div class="d-flex align-items-center mb-4">
+          <i class="bi bi-mortarboard fs-2 text-danger me-3"></i>
+          <h3 class="fw-bold m-0" data-en="Education" data-pt="Formações">Formações</h3>
+        </div>
+        <div class="mb-4 ps-3 border-start border-danger border-2">
+          <h6 class="fw-bold mb-1" data-en="High School + Tech in Systems Development" data-pt="Ensino Médio Integrado ao Técnico em Desenvolvimento de Sistemas">Ensino Médio Integrado ao Técnico em Desenvolvimento de Sistemas</h6>
+          <span class="text-secondary">ETEC Machado de Assis</span>
+        </div>
+        <div class="ps-3 border-start border-danger border-2">
+          <h6 class="fw-bold mb-1" data-en="Multiplatform Software Development" data-pt="Desenvolvimento de Software Multiplataforma">Desenvolvimento de Software Multiplataforma</h6>
+          <span class="text-secondary">Fatec Prof. Jessen Vidal (<span data-en="In progress" data-pt="Em andamento">Em andamento</span>)</span>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="d-flex align-items-center mb-4">
+          <i class="bi bi-patch-check fs-2 text-danger me-3"></i>
+          <h3 class="fw-bold m-0" data-en="Courses" data-pt="Cursos">Cursos</h3>
+        </div>
+        <ul class="list-group list-group-flush bg-transparent">
+          <li class="list-group-item bg-transparent text-secondary border-0 ps-0 py-2"><i class="bi bi-check2 text-danger me-2"></i> Lógica de Programação | Alura</li>
+          <li class="list-group-item bg-transparent text-secondary border-0 ps-0 py-2"><i class="bi bi-check2 text-danger me-2"></i> Python - Funções, Condicionais, Laços | Alura</li>
+          <li class="list-group-item bg-transparent text-secondary border-0 ps-0 py-2"><i class="bi bi-check2 text-danger me-2"></i> Git e GitHub | Alura</li>
+          <li class="list-group-item bg-transparent text-secondary border-0 ps-0 py-2"><i class="bi bi-check2 text-danger me-2"></i> HTML, CSS e JS | Fatec/Etec</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="fancy-hr">
+
+  <!-- Seção Projetos -->
+  <section class="container py-4" id="projetos">
+    <h3 class="fw-bold mb-5 text-center" data-en="Featured Projects" data-pt="Projetos em Destaque">Projetos em Destaque</h3>
+    
+    <!-- Mudança aqui: row-cols-lg-3 garante 3 cards alinhados em telas grandes -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+      
+      <!-- Card 1: Cafeteria Premium Full-Stack -->
+      <div class="col">
+        <div class="card h-100 card-projeto">
+          <img src="img/cafe.jpg" class="card-img-top" alt="E-Commerce Cafeteria">
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="card-title fw-bold" data-en="Premium Coffee Shop Full-Stack" data-pt="E-Commerce Cafeteria Premium">E-Commerce Cafeteria Premium</h5>
+              <p class="card-text text-secondary fw-light fs-6 mt-2" 
+                 data-en="Full-stack web application featuring dynamic product catalog, login authentication, and real-time user reviews. Powered by an SQL database and hosted on an AWS EC2 instance." 
+                 data-pt="Aplicação web completa com catálogo dinâmico de produtos, login com autenticação segura e seção de comentários em tempo real. Dados persistidos em banco SQL e hospedado em instância AWS EC2.">
+                Aplicação web completa com catálogo dinâmico de produtos, login com autenticação segura e seção de comentários em tempo real. Dados persistidos em banco SQL e hospedado em instância AWS EC2.
+              </p>
+              <div class="d-flex flex-wrap gap-1 mt-2">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">Flask</span>
+                <span class="tech-badge">MySQL</span>
+                <span class="tech-badge">AWS EC2</span>
+              </div>
+            </div>
+            <a href="https://github.com/gustaft07" class="btn btn-outline-danger w-100 mt-4" target="_blank" rel="noopener" data-en="View Project" data-pt="Visualizar Projeto">Visualizar Projeto</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Radar Cidadão -->
+      <div class="col">
+        <div class="card h-100 card-projeto">
+          <img src="img/api1.png" class="card-img-top" alt="Radar Cidadão">
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="card-title fw-bold" data-en="Radar Cidadão API" data-pt="API Radar Cidadão">API Radar Cidadão</h5>
+              <p class="card-text text-secondary fw-light fs-6 mt-2" 
+                 data-en="1st semester project developed to assist voters in viewing political data. Handled Front-end, data cleaning, and Back-end." 
+                 data-pt="Projeto do 1° Semestre feito para auxiliar a visualização de dados de deputados. Atuei no Front-end, limpeza/tratamento de dados e Back-end.">
+                Projeto do 1° Semestre feito para auxiliar a visualização de dados de deputados. Atuei no Front-end, limpeza/tratamento de dados e Back-end.
+              </p>
+              <div class="d-flex flex-wrap gap-1 mt-2">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">Flask</span>
+                <span class="tech-badge">Data Cleaning</span>
+                <span class="tech-badge">Bootstrap</span>
+              </div>
+            </div>
+            <a href="https://github.com/APILumina/API1_DSM_Lumina" class="btn btn-outline-danger w-100 mt-4" target="_blank" rel="noopener" data-en="View Project" data-pt="Visualizar Projeto">Visualizar Projeto</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: InfoTec (Texto e Alinhamento Corrigidos) -->
+      <div class="col">
+        <div class="card h-100 card-projeto">
+          <img src="img/etec.jpg" class="card-img-top" style="object-fit: contain; padding: 2rem; background: #1e1e1e;" alt="Plataforma InfoTec">
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="card-title fw-bold" data-en="InfoTec Platform" data-pt="Plataforma InfoTec">Plataforma InfoTec</h5>
+              <p class="card-text text-secondary fw-light fs-6 mt-2" 
+                 data-en="An interactive integration platform developed for ETEC to assist new students. Features school guides, dynamic notice boards, schedules, and a gamified quiz with user rankings." 
+                 data-pt="Plataforma interativa de integração escolar desenvolvida para a ETEC. Conta com guias informativos, murais dinâmicos, cronogramas e um quiz gamificado com ranking de usuários.">
+                Plataforma interativa de integração escolar desenvolvida para a ETEC. Conta com guias informativos, murais dinâmicos, cronogramas e um quiz gamificado com ranking de usuários.
+              </p>
+              <div class="d-flex flex-wrap gap-1 mt-2">
+                <span class="tech-badge">Full-Stack</span>
+                <span class="tech-badge">Autenticação</span>
+                <span class="tech-badge">Banco de Dados</span>
+              </div>
+            </div>
+            <a href="documentos/infotec_documentacao.pdf" download="InfoTec_Documentacao_Tecnica.pdf" class="btn btn-outline-danger w-100 mt-4">
+              <i class="bi bi-file-earmark-pdf-fill me-2"></i><span data-en="Download Docs" data-pt="Baixar Documentação">Baixar Documentação</span>
             </a>
           </div>
         </div>
       </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"></script>
-</body>
 
+    </div>
+  </section>
+  
+  <!-- Seção Contato / Footer -->
+  <footer class="mt-5 py-5" id="contato">
+    <div class="container text-center">
+      <h3 class="fw-bold mb-3" data-en="Get In Touch" data-pt="Contato">Contato</h3>
+      <p class="text-secondary fw-light mb-4 mx-auto" style="max-width: 500px;" data-en="Liked my work? Let's talk about your next project!" data-pt="Gostou do meu trabalho? Vamos conversar sobre o seu próximo projeto!">
+        Gostou do meu trabalho? Vamos conversar sobre o seu próximo projeto!
+      </p>
+
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="https://www.instagram.com/gu_oliveira07/" target="_blank" rel="noopener" class="btn btn-outline-danger px-4 rounded-pill">
+          <i class="bi bi-instagram me-2"></i>Instagram
+        </a>
+        <a href="https://www.linkedin.com/in/gustavo-oliveira-1056303a8/" target="_blank" rel="noopener" class="btn btn-outline-danger px-4 rounded-pill">
+          <i class="bi bi-linkedin me-2"></i>LinkedIn
+        </a>
+        <a href="https://github.com/gustaft07" target="_blank" rel="noopener" class="btn btn-outline-danger px-4 rounded-pill">
+          <i class="bi bi-github me-2"></i>GitHub
+        </a>
+      </div>
+      <p class="mt-5 mb-0 text-secondary small">&copy; 2026 Gustavo Oliveira. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Tradução e Temas -->
+  <script>
+    const textData = {
+      pt: {
+        p1: "Sou estudante da FATEC Prof. Jessen Vidal, com formação no ensino médio integrado ao curso técnico pela ETEC. Tenho grande interesse na área de desenvolvimento e estou sempre buscando evoluir minhas habilidades e aprender novas tecnologias.",
+        p2: "Possuo conhecimentos em <strong>HTML, CSS e Bootstrap</strong> para criação de interfaces modernas e responsivas, além de experiência com <strong>Tailwind CSS</strong>. No back-end, trabalho com <strong>Python</strong> utilizando o framework <strong>Flask</strong>, e também tenho conhecimentos em banco de dados com <strong>MySQL</strong>.",
+        cv: "<i class='bi bi-file-earmark-arrow-down-fill me-2'></i>Baixar Currículo"
+      },
+      en: {
+        p1: "I am a student at FATEC Prof. Jessen Vidal, with a background in integrated technical high school by ETEC. I have a major interest in software development and I am always looking forward to improving my skills and learning new technologies.",
+        p2: "I have experience with <strong>HTML, CSS, and Bootstrap</strong> to build responsive and modern interfaces, along with <strong>Tailwind CSS</strong>. On the back-end side, I develop with <strong>Python</strong> using the <strong>Flask</strong> framework, and I also have knowledge of <strong>MySQL</strong> databases.",
+        cv: "<i class='bi bi-file-earmark-arrow-down-fill me-2'></i>Download CV"
+      }
+    };
+
+    let currentLang = 'pt';
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'pt' ? 'en' : 'pt';
+      document.getElementById('btn-lang').innerText = currentLang === 'pt' ? 'EN' : 'PT';
+      
+      document.querySelectorAll('[data-pt]').forEach(elem => {
+        elem.innerHTML = elem.getAttribute(`data-${currentLang}`);
+      });
+
+      const paragraphs = document.querySelectorAll('#about-text p');
+      paragraphs[0].innerHTML = textData[currentLang].p1;
+      paragraphs[1].innerHTML = textData[currentLang].p2;
+
+      document.getElementById('btn-cv').innerHTML = textData[currentLang].cv;
+    }
+
+    function toggleTheme() {
+      const htmlElement = document.documentElement;
+      const themeBtn = document.getElementById('btn-theme');
+      
+      if (htmlElement.getAttribute('data-bs-theme') === 'dark') {
+        htmlElement.setAttribute('data-bs-theme', 'light');
+        themeBtn.innerHTML = '<i class="bi bi-moon-fill"></i>';
+      } else {
+        htmlElement.setAttribute('data-bs-theme', 'dark');
+        themeBtn.innerHTML = '<i class="bi bi-sun-fill"></i>';
+      }
+    }
+  </script>
+</body>
 </html>
