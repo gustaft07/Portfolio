@@ -20,6 +20,8 @@
       --main-red: #65010D;
       --hover-red: #480009;
       --accent-red-soft: #9e2a38;
+      --accent-amber: #C97A32;
+      --accent-amber-deep: #8F4712;
       --bg-dark-1: #121212;
       --bg-dark-2: #191919;
       --bg-beige: #FCE7D1;
@@ -108,8 +110,10 @@
 
     /* Hero / Sobre */
     .foto-perfil {
-      width: 265px;
-      height: 265px;
+      width: 320px;
+      height: 320px;
+      max-width: 82vw;
+      aspect-ratio: 1 / 1;
       border-radius: 50%;
       object-fit: cover;
       cursor: pointer;
@@ -117,11 +121,18 @@
       z-index: 2;
       border: 4px solid var(--bg-dark-2);
       outline: 2px solid rgba(101, 1, 13, 0.65);
-      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.48);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.48);
       transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
                   outline-color 0.3s ease,
                   outline-width 0.3s ease,
                   box-shadow 0.35s ease;
+    }
+
+    @media (max-width: 767.98px) {
+      .foto-perfil {
+        width: 260px;
+        height: 260px;
+      }
     }
 
     .foto-perfil:hover {
@@ -130,7 +141,7 @@
     }
 
     .foto-perfil.focused {
-      transform: scale(1.09) translateY(-6px);
+      transform: scale(1.08) translateY(-6px);
       outline: 3px solid var(--main-red);
       outline-offset: 6px;
       box-shadow: 0 22px 52px rgba(101, 1, 13, 0.45), 0 12px 28px rgba(0, 0, 0, 0.65);
@@ -181,8 +192,67 @@
     }
 
     .stack-chip:hover {
-      border-color: var(--accent-red-soft);
+      border-color: var(--accent-amber);
       transform: translateY(-1px);
+    }
+
+    /* Hard Skills elaboradas */
+    .hard-skill-card {
+      background-color: var(--bg-dark-2);
+      border: 1px solid rgba(252, 231, 209, 0.08);
+      border-top: 3px solid var(--main-red);
+      border-radius: 16px;
+      padding: 1.5rem;
+      height: 100%;
+      transition: transform 0.22s ease, border-color 0.22s ease, background-color 0.3s ease;
+    }
+
+    .hard-skill-card:hover {
+      transform: translateY(-4px);
+      border-top-color: var(--accent-amber);
+      border-color: rgba(201, 122, 50, 0.35);
+    }
+
+    .hard-skill-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .hard-skill-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(101, 1, 13, 0.25);
+      color: var(--accent-amber);
+      font-size: 1.05rem;
+      flex-shrink: 0;
+    }
+
+    .hard-skill-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0;
+      display: grid;
+      gap: 0.45rem;
+      font-size: 0.82rem;
+      color: #d6c8ba;
+    }
+
+    .hard-skill-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .hard-skill-list i {
+      color: var(--accent-amber);
+      margin-top: 0.15rem;
+      flex-shrink: 0;
     }
 
     /* Botões e Filtros */
@@ -250,10 +320,91 @@
       transform: translateY(0);
     }
 
-    /* Linha de Formação */
-    .edu-item {
-      padding: 1rem 0 1rem 1.25rem;
-      border-left: 2px solid var(--main-red);
+    /* Formação & Cursos em destaque */
+    .edu-card {
+      background-color: var(--bg-dark-2);
+      border: 1px solid rgba(252, 231, 209, 0.08);
+      border-left: 3px solid var(--main-red);
+      border-radius: 14px;
+      padding: 1.35rem 1.5rem;
+      transition: transform 0.22s ease, border-color 0.22s ease, background-color 0.3s ease;
+    }
+
+    .edu-card:hover {
+      transform: translateY(-3px);
+      border-left-color: var(--accent-amber);
+      border-color: rgba(201, 122, 50, 0.35);
+    }
+
+    .edu-icon-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(101, 1, 13, 0.25);
+      color: var(--accent-amber);
+      font-size: 1.05rem;
+      flex-shrink: 0;
+    }
+
+    .edu-status-badge {
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 0.22rem 0.65rem;
+      border-radius: 50px;
+      background-color: rgba(201, 122, 50, 0.14);
+      color: var(--accent-amber);
+      border: 1px solid rgba(201, 122, 50, 0.35);
+      white-space: nowrap;
+    }
+
+    .edu-status-badge.completed {
+      background-color: rgba(101, 1, 13, 0.24);
+      color: var(--bg-beige);
+      border-color: rgba(101, 1, 13, 0.55);
+    }
+
+    .course-list {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .course-card {
+      background-color: var(--bg-dark-2);
+      border: 1px solid rgba(252, 231, 209, 0.08);
+      border-radius: 12px;
+      padding: 0.9rem 1.15rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.85rem;
+      transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.3s ease;
+    }
+
+    .course-card:hover {
+      transform: translateX(4px);
+      border-color: rgba(201, 122, 50, 0.35);
+    }
+
+    .course-title {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0;
+      line-height: 1.4;
+    }
+
+    .course-provider {
+      font-size: 0.74rem;
+      font-weight: 500;
+      padding: 0.22rem 0.7rem;
+      border-radius: 50px;
+      background-color: rgba(101, 1, 13, 0.28);
+      color: var(--bg-beige);
+      border: 1px solid rgba(101, 1, 13, 0.6);
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     /* Evento em faixa horizontal mais solta */
@@ -312,10 +463,47 @@
       color: var(--accent-red-soft);
     }
 
-    /* Soft Skills em formato editorial leve */
-    .soft-note {
-      padding: 1.35rem 0;
-      border-top: 1px solid rgba(252, 231, 209, 0.1);
+    /* Soft Skills aprofundadas com toque âmbar complementar */
+    .soft-card {
+      background-color: var(--bg-dark-2);
+      border: 1px solid rgba(252, 231, 209, 0.08);
+      border-left: 3px solid var(--main-red);
+      border-radius: 14px;
+      padding: 1.4rem 1.5rem;
+      height: 100%;
+      transition: transform 0.22s ease, border-color 0.22s ease, background-color 0.3s ease;
+    }
+
+    .soft-card:hover {
+      transform: translateY(-3px);
+      border-left-color: var(--accent-amber);
+      border-color: rgba(201, 122, 50, 0.35);
+    }
+
+    .soft-icon-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(101, 1, 13, 0.25);
+      color: var(--accent-amber);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .soft-practice {
+      margin-top: 0.85rem;
+      padding-top: 0.75rem;
+      border-top: 1px dashed rgba(252, 231, 209, 0.12);
+      font-size: 0.8rem;
+      color: #d6c8ba;
+    }
+
+    .soft-practice strong {
+      color: var(--accent-amber);
+      font-weight: 500;
     }
 
     /* Divisória suave */
@@ -371,7 +559,7 @@
       background-color: var(--hover-red);
     }
 
-    /* Modo Bege Padrão (#FCE7D1) + Vinho (#65010D) */
+    /* Modo Bege Padrão (#FCE7D1) + Vinho (#65010D) + Âmbar (#8F4712) */
     [data-bs-theme="light"] body {
       background-color: var(--bg-beige);
       color: #2b1417;
@@ -421,6 +609,29 @@
       border-color: rgba(101, 1, 13, 0.24);
     }
 
+    [data-bs-theme="light"] .hard-skill-card {
+      background-color: var(--bg-beige-surface);
+      border-color: rgba(101, 1, 13, 0.14);
+    }
+
+    [data-bs-theme="light"] .hard-skill-card:hover {
+      border-top-color: var(--accent-amber-deep);
+      border-color: rgba(143, 71, 18, 0.35);
+    }
+
+    [data-bs-theme="light"] .hard-skill-icon {
+      background-color: rgba(143, 71, 18, 0.12);
+      color: var(--accent-amber-deep);
+    }
+
+    [data-bs-theme="light"] .hard-skill-list {
+      color: #4f3135;
+    }
+
+    [data-bs-theme="light"] .hard-skill-list i {
+      color: var(--accent-amber-deep);
+    }
+
     [data-bs-theme="light"] .btn-outline-danger {
       color: var(--main-red);
       border-color: var(--main-red);
@@ -445,14 +656,63 @@
       color: var(--bg-beige);
     }
 
+    [data-bs-theme="light"] .edu-card,
+    [data-bs-theme="light"] .course-card,
     [data-bs-theme="light"] .event-panel,
-    [data-bs-theme="light"] .card-projeto {
+    [data-bs-theme="light"] .card-projeto,
+    [data-bs-theme="light"] .soft-card {
       background-color: var(--bg-beige-surface);
       border-color: rgba(101, 1, 13, 0.14);
     }
 
+    [data-bs-theme="light"] .edu-card:hover {
+      border-left-color: var(--accent-amber-deep);
+      border-color: rgba(143, 71, 18, 0.35);
+    }
+
+    [data-bs-theme="light"] .course-card:hover {
+      border-color: rgba(143, 71, 18, 0.35);
+    }
+
+    [data-bs-theme="light"] .edu-icon-badge {
+      background-color: rgba(143, 71, 18, 0.12);
+      color: var(--accent-amber-deep);
+    }
+
+    [data-bs-theme="light"] .edu-status-badge {
+      background-color: rgba(143, 71, 18, 0.1);
+      color: var(--accent-amber-deep);
+      border-color: rgba(143, 71, 18, 0.3);
+    }
+
+    [data-bs-theme="light"] .edu-status-badge.completed,
+    [data-bs-theme="light"] .course-provider {
+      background-color: rgba(101, 1, 13, 0.08);
+      color: var(--main-red);
+      border-color: rgba(101, 1, 13, 0.24);
+    }
+
     [data-bs-theme="light"] .card-projeto:hover {
       border-color: var(--main-red);
+    }
+
+    [data-bs-theme="light"] .soft-card:hover {
+      border-left-color: var(--accent-amber-deep);
+      border-color: rgba(143, 71, 18, 0.35);
+    }
+
+    [data-bs-theme="light"] .soft-icon-badge {
+      background-color: rgba(143, 71, 18, 0.12);
+      color: var(--accent-amber-deep);
+    }
+
+    [data-bs-theme="light"] .soft-practice {
+      border-top-color: rgba(101, 1, 13, 0.14);
+      color: #4f3135;
+    }
+
+    [data-bs-theme="light"] .soft-practice strong {
+      color: var(--accent-amber-deep);
     }
 
     [data-bs-theme="light"] .card-img-contain,
@@ -469,10 +729,6 @@
       color: var(--main-red);
     }
 
-    [data-bs-theme="light"] .soft-note {
-      border-top-color: rgba(101, 1, 13, 0.16);
-    }
-
     [data-bs-theme="light"] .fancy-hr {
       background: linear-gradient(to right, transparent, rgba(101, 1, 13, 0.22), transparent);
     }
@@ -480,7 +736,7 @@
     [data-bs-theme="light"] .foto-perfil {
       border-color: var(--bg-beige-surface);
       outline-color: rgba(101, 1, 13, 0.45);
-      box-shadow: 0 14px 32px rgba(101, 1, 13, 0.14);
+      box-shadow: 0 16px 36px rgba(101, 1, 13, 0.15);
     }
 
     [data-bs-theme="light"] .foto-perfil.focused {
@@ -517,6 +773,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto align-items-center gap-1 text-center py-3 py-lg-0">
           <li class="nav-item"><a class="nav-link" href="#sobre" data-en="About" data-pt="Sobre">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link" href="#hard-skills" data-en="Hard Skills" data-pt="Hard Skills">Hard Skills</a></li>
           <li class="nav-item"><a class="nav-link" href="#formacao" data-en="Education" data-pt="Formação">Formação</a></li>
           <li class="nav-item"><a class="nav-link" href="#eventos" data-en="Events" data-pt="Eventos">Eventos</a></li>
           <li class="nav-item"><a class="nav-link" href="#projetos" data-en="Projects" data-pt="Projetos">Projetos</a></li>
@@ -538,22 +795,22 @@
   <main class="container py-5 my-2" id="sobre">
     <div class="row align-items-center g-5">
       <div class="col-md-5 text-center">
-        <img src="img/eu2.jpeg" id="profilePhoto" class="foto-perfil" alt="Gustavo Oliveira" onclick="togglePhotoFocus(event)" title="Clique para destacar">
+        <img src="img/eu2.jpeg" id="profilePhoto" class="foto-perfil" alt="Gustavo de Oliveira Azevedo" onclick="togglePhotoFocus(event)" title="Clique para destacar">
       </div>
       <div class="col-md-7">
         <div class="mb-2">
           <span class="subtle-tag">
             <span class="subtle-dot"></span>
-            <span data-en="São José dos Campos, SP · Full-Stack Student" data-pt="São José dos Campos, SP · Desenvolvedor Full-Stack">São José dos Campos, SP · Desenvolvedor Full-Stack</span>
+            <span data-en="São José dos Campos, SP · Full-Stack Developer" data-pt="São José dos Campos, SP · Desenvolvedor Full-Stack">São José dos Campos, SP · Desenvolvedor Full-Stack</span>
           </span>
         </div>
         <h1 class="display-5 fw-bold mb-3">Gustavo de Oliveira Azevedo</h1>
         <div id="about-text" class="text-secondary lh-lg fw-light">
           <p class="text-justify">
-            Sou estudante de Desenvolvimento de Software Multiplataforma na FATEC Prof. Jessen Vidal, com formação técnica integrada ao ensino médio pela ETEC. Gosto de construir aplicações web organizadas, funcionais e fáceis de manter no dia a dia.
+            Sou desenvolvedor full-stack e graduando em Desenvolvimento de Software Multiplataforma na <strong>FATEC Prof. Jessen Vidal</strong>, com base técnica integrada ao ensino médio pela <strong>ETEC</strong>. Gosto de transformar regras de negócio em aplicações web claras, responsivas e fáceis de evoluir em equipe.
           </p>
           <p class="text-justify">
-            No front-end, trabalho com <strong>React, TypeScript, HTML, CSS, Tailwind CSS e Bootstrap</strong>. No back-end e banco de dados, utilizo <strong>Node.js, Python (Flask), Prisma ORM, MySQL e Docker</strong> para estruturar APIs e ambientes confiáveis.
+            Atuo de ponta a ponta no ciclo de desenvolvimento: construo interfaces dinâmicas com <strong>React, TypeScript, Tailwind CSS e Bootstrap</strong>, e estruturo APIs REST, modelagem relacional e ambientes conteinerizados usando <strong>Node.js, Python (Flask), Prisma ORM, MySQL e Docker</strong>.
           </p>
         </div>
 
@@ -593,29 +850,255 @@
 
   <hr class="fancy-hr">
 
-  <!-- Formação e Cursos -->
-  <section class="container" id="formacao">
-    <div class="row g-5">
-      <div class="col-lg-6">
-        <h3 class="fw-bold mb-4" data-en="Education" data-pt="Formação">Formação</h3>
-        <div class="edu-item mb-3">
-          <h6 class="fw-semibold mb-1" data-en="Multiplatform Software Development" data-pt="Desenvolvimento de Software Multiplataforma">Desenvolvimento de Software Multiplataforma</h6>
-          <p class="text-secondary small mb-0">FATEC Prof. Jessen Vidal · <span data-en="In progress" data-pt="Em andamento">Em andamento</span></p>
-        </div>
-        <div class="edu-item">
-          <h6 class="fw-semibold mb-1" data-en="High School + Tech in Systems Development" data-pt="Ensino Médio Integrado ao Técnico em Desenvolvimento de Sistemas">Ensino Médio Integrado ao Técnico em Desenvolvimento de Sistemas</h6>
-          <p class="text-secondary small mb-0">ETEC Machado de Assis</p>
+  <!-- Hard Skills Elaboradas -->
+  <section class="container" id="hard-skills">
+    <div class="mb-4">
+      <h6 class="fw-semibold text-uppercase small mb-1" style="color: var(--accent-amber-deep);" data-en="Technical Stack & Architecture" data-pt="Stack Técnica & Camadas">Stack Técnica & Camadas</h6>
+      <h3 class="fw-bold mb-1" data-en="Hard Skills" data-pt="Hard Skills">Hard Skills</h3>
+      <p class="text-secondary small fw-light mb-0"
+         data-en="Tools and layers I combine to build web interfaces, REST APIs, relational databases, and containerized deployments."
+         data-pt="Ferramentas e camadas que combino para desenvolver interfaces web, APIs REST, bancos relacionais e ambientes conteinerizados.">
+        Ferramentas e camadas que combino para desenvolver interfaces web, APIs REST, bancos relacionais e ambientes conteinerizados.
+      </p>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <!-- Front-End -->
+      <div class="col">
+        <div class="hard-skill-card">
+          <div class="hard-skill-header">
+            <span class="hard-skill-icon"><i class="bi bi-window-sidebar"></i></span>
+            <div>
+              <h5 class="fw-bold mb-0" data-en="Front-End & UI" data-pt="Front-End & Interface">Front-End & Interface</h5>
+              <span class="text-secondary small" data-en="Component structure & responsive layouts" data-pt="Componentização e layouts responsivos">Componentização e layouts responsivos</span>
+            </div>
+          </div>
+
+          <div class="d-flex flex-wrap gap-1">
+            <span class="tech-badge">React</span>
+            <span class="tech-badge">TypeScript</span>
+            <span class="tech-badge">JavaScript</span>
+            <span class="tech-badge">HTML5</span>
+            <span class="tech-badge">CSS3</span>
+            <span class="tech-badge">Tailwind CSS</span>
+            <span class="tech-badge">Bootstrap</span>
+          </div>
+
+          <ul class="hard-skill-list">
+            <li>
+              <i class="bi bi-check2-circle"></i>
+              <span data-en="Interactive views, dynamic filters, and clean state handling in React and TypeScript." data-pt="Telas interativas, filtros dinâmicos e organização de estado em React e TypeScript.">Telas interativas, filtros dinâmicos e organização de estado em React e TypeScript.</span>
+            </li>
+            <li>
+              <i class="bi bi-check2-circle"></i>
+              <span data-en="Responsive design and consistent visual hierarchy using Tailwind CSS and Bootstrap." data-pt="Layout responsivo e consistência visual com Tailwind CSS e Bootstrap.">Layout responsivo e consistência visual com Tailwind CSS e Bootstrap.</span>
+            </li>
+          </ul>
         </div>
       </div>
 
-      <div class="col-lg-6">
-        <h3 class="fw-bold mb-4" data-en="Courses" data-pt="Cursos">Cursos</h3>
-        <ul class="list-unstyled text-secondary lh-lg mb-0">
-          <li class="py-1"><i class="bi bi-dot fs-4 align-middle" style="color: var(--main-red);"></i>Lógica de Programação — Alura</li>
-          <li class="py-1"><i class="bi bi-dot fs-4 align-middle" style="color: var(--main-red);"></i>Python: Funções, Condicionais e Laços — Alura</li>
-          <li class="py-1"><i class="bi bi-dot fs-4 align-middle" style="color: var(--main-red);"></i>Git e GitHub — Alura</li>
-          <li class="py-1"><i class="bi bi-dot fs-4 align-middle" style="color: var(--main-red);"></i>HTML, CSS e JavaScript — ETEC / FATEC</li>
-        </ul>
+      <!-- Back-End -->
+      <div class="col">
+        <div class="hard-skill-card">
+          <div class="hard-skill-header">
+            <span class="hard-skill-icon"><i class="bi bi-hdd-network"></i></span>
+            <div>
+              <h5 class="fw-bold mb-0" data-en="Back-End & APIs" data-pt="Back-End & APIs">Back-End & APIs</h5>
+              <span class="text-secondary small" data-en="Business rules, routes & data processing" data-pt="Regras de negócio, rotas e processamento de dados">Regras de negócio, rotas e processamento de dados</span>
+            </div>
+          </div>
+
+          <div class="d-flex flex-wrap gap-1">
+            <span class="tech-badge">Node.js</span>
+            <span class="tech-badge">Fastify</span>
+            <span class="tech-badge">Python</span>
+            <span class="tech-badge">Flask</span>
+            <span class="tech-badge">REST APIs</span>
+          </div>
+
+          <ul class="hard-skill-list">
+            <li>
+              <i class="bi bi-check2-circle"></i>
+              <span data-en="REST endpoints, validation rules, and access control with Node.js/Fastify and Python/Flask." data-pt="Endpoints REST, validações de regra de negócio e permissões com Node.js/Fastify e Python/Flask.">Endpoints REST, validações de regra de negócio e permissões com Node.js/Fastify e Python/Flask.</span>
+            </li>
+            <li>
+              <i class="bi bi-check2-circle"></i>
+              <span data-en="Data cleaning, tabular workflows, and report generation in Python web apps." data-pt="Tratamento de dados, fluxos tabulares e geração de relatórios em aplicações Python.">Tratamento de dados, fluxos tabulares e geração de relatórios em aplicações Python.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Banco de Dados -->
+      <div class="col">
+        <div class="hard-skill-card">
+          <div class="hard-skill-header">
+            <span class="hard-skill-icon"><i class="bi bi-database"></i></span>
+            <div>
+              <h5 class="fw-bold mb-0" data-en="Databases & ORM" data-pt="Banco de Dados & ORM">Banco de Dados & ORM</h5>
+              <span class="text-secondary small" data-en="Relational modeling & schema migrations" data-pt="Modelagem relacional e migrations">Modelagem relacional e migrations</span>
+            </div>
+          </div>
+
+          <div class="d-flex flex-wrap gap-1">
+            <span class="tech-badge">MySQL</span>
+            <span class="tech-badge">Prisma ORM</span>
+            <span class="tech-badge">SQL Modeling</span>
+          </div>
+
+          <ul class="hard-skill-list">
+            <li>
+              <i class="bi bi-check2-circle"></i>
+              <span data-en="Relational entity design, foreign keys, and structured queries in MySQL." data-pt="Modelagem de entidades relacionais, chaves estrangeiras e consultas estruturadas em MySQL.">Modelagem de entidades relacionais, chaves estrangeiras e consultas estruturadas em MySQL.</span>
+            </li>
+            <li>
+              <i class="bi bi-check2-circle"></i>
+              <span data-en="Versioned schema changes, relations, and type-safe queries with Prisma ORM." data-pt="Evolução de schema com migrations, relacionamentos e consultas tipadas com Prisma ORM.">Evolução de schema com migrations, relacionamentos e consultas tipadas com Prisma ORM.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- DevOps & Cloud -->
+      <div class="col">
+        <div class="hard-skill-card">
+          <div class="hard-skill-header">
+            <span class="hard-skill-icon"><i class="bi bi-box-seam"></i></span>
+            <div>
+              <h5 class="fw-bold mb-0" data-en="DevOps, Cloud & Git" data-pt="DevOps, Cloud & Git">DevOps, Cloud & Git</h5>
+              <span class="text-secondary small" data-en="Containers, hosting & version control" data-pt="Contêineres, hospedagem e versionamento">Contêineres, hospedagem e versionamento</span>
+            </div>
+          </div>
+
+          <div class="d-flex flex-wrap gap-1">
+            <span class="tech-badge">Docker</span>
+            <span class="tech-badge">Docker Compose</span>
+            <span class="tech-badge">AWS EC2</span>
+            <span class="tech-badge">Vercel</span>
+            <span class="tech-badge">Railway</span>
+            <span class="tech-badge">Git & GitHub</span>
+          </div>
+
+          <ul class="hard-skill-list">
+            <li>
+              <i class="bi bi-check2-circle"></i>
+              <span data-en="Reproducible local and production environments using Docker and Docker Compose." data-pt="Ambientes reprodutíveis para desenvolvimento e deploy com Docker e Docker Compose.">Ambientes reprodutíveis para desenvolvimento e deploy com Docker e Docker Compose.</span>
+            </li>
+            <li>
+              <i class="bi bi-check2-circle"></i>
+              <span data-en="Application hosting on AWS EC2, Vercel, and Railway with branch workflows on GitHub." data-pt="Publicação de aplicações em AWS EC2, Vercel e Railway com fluxo organizado no Git e GitHub.">Publicação de aplicações em AWS EC2, Vercel e Railway com fluxo organizado no Git e GitHub.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="fancy-hr">
+
+  <!-- Formação e Cursos -->
+  <section class="container" id="formacao">
+    <div class="mb-4">
+      <h6 class="fw-semibold text-uppercase small mb-1" style="color: var(--accent-amber-deep);" data-en="Academic Background & Certifications" data-pt="Base Acadêmica & Aperfeiçoamento">Base Acadêmica & Aperfeiçoamento</h6>
+      <h3 class="fw-bold mb-1" data-en="Education & Courses" data-pt="Formação & Cursos">Formação & Cursos</h3>
+      <p class="text-secondary small fw-light mb-0"
+         data-en="Academic degrees and complementary courses supporting my full-stack development path."
+         data-pt="Minha trajetória acadêmica e cursos complementares que fortalecem minha base em desenvolvimento.">
+        Minha trajetória acadêmica e cursos complementares que fortalecem minha base em desenvolvimento.
+      </p>
+    </div>
+
+    <div class="row g-4 align-items-stretch">
+      <!-- Coluna Formação -->
+      <div class="col-lg-6 d-flex flex-column">
+        <h5 class="fw-semibold mb-3 d-flex align-items-center gap-2">
+          <i class="bi bi-mortarboard-fill" style="color: var(--main-red);"></i>
+          <span data-en="Academic Education" data-pt="Formação Acadêmica">Formação Acadêmica</span>
+        </h5>
+
+        <div class="d-grid gap-3 flex-grow-1">
+          <div class="edu-card d-flex flex-column justify-content-between">
+            <div>
+              <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                <div class="d-flex align-items-center gap-3">
+                  <span class="edu-icon-badge"><i class="bi bi-laptop"></i></span>
+                  <div>
+                    <h6 class="fw-bold mb-0" data-en="Multiplatform Software Development" data-pt="Desenvolvimento de Software Multiplataforma">Desenvolvimento de Software Multiplataforma</h6>
+                    <span class="text-secondary small">FATEC Prof. Jessen Vidal</span>
+                  </div>
+                </div>
+                <span class="edu-status-badge" data-en="In progress" data-pt="Em andamento">Em andamento</span>
+              </div>
+              <p class="text-secondary small fw-light mb-0 mt-2"
+                 data-en="Higher education focused on full-stack web architecture, relational databases, software engineering, and cloud deployment."
+                 data-pt="Graduação tecnológica focada em arquitetura web full-stack, bancos de dados relacionais, engenharia de software e deploy em nuvem.">
+                Graduação tecnológica focada em arquitetura web full-stack, bancos de dados relacionais, engenharia de software e deploy em nuvem.
+              </p>
+            </div>
+          </div>
+
+          <div class="edu-card d-flex flex-column justify-content-between">
+            <div>
+              <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                <div class="d-flex align-items-center gap-3">
+                  <span class="edu-icon-badge"><i class="bi bi-code-slash"></i></span>
+                  <div>
+                    <h6 class="fw-bold mb-0" data-en="High School + Tech in Systems Development" data-pt="Ensino Médio Integrado ao Técnico em Desenvolvimento de Sistemas">Ensino Médio Integrado ao Técnico em Desenvolvimento de Sistemas</h6>
+                    <span class="text-secondary small">ETEC Machado de Assis</span>
+                  </div>
+                </div>
+                <span class="edu-status-badge completed" data-en="Completed" data-pt="Concluído">Concluído</span>
+              </div>
+              <p class="text-secondary small fw-light mb-0 mt-2"
+                 data-en="Technical foundation in programming logic, web development, database modeling, and team software projects."
+                 data-pt="Formação técnica com base sólida em lógica de programação, desenvolvimento web, modelagem de dados e projetos em equipe.">
+                Formação técnica com base sólida em lógica de programação, desenvolvimento web, modelagem de dados e projetos em equipe.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coluna Cursos -->
+      <div class="col-lg-6 d-flex flex-column">
+        <h5 class="fw-semibold mb-3 d-flex align-items-center gap-2">
+          <i class="bi bi-patch-check-fill" style="color: var(--main-red);"></i>
+          <span data-en="Complementary Courses" data-pt="Cursos Complementares">Cursos Complementares</span>
+        </h5>
+
+        <div class="course-list flex-grow-1">
+          <div class="course-card">
+            <div class="d-flex align-items-center gap-2">
+              <i class="bi bi-check2-circle" style="color: var(--accent-amber-deep);"></i>
+              <p class="course-title" data-en="Programming Logic" data-pt="Lógica de Programação">Lógica de Programação</p>
+            </div>
+            <span class="course-provider">Alura</span>
+          </div>
+
+          <div class="course-card">
+            <div class="d-flex align-items-center gap-2">
+              <i class="bi bi-check2-circle" style="color: var(--accent-amber-deep);"></i>
+              <p class="course-title" data-en="Python: Functions, Conditionals & Loops" data-pt="Python: Funções, Condicionais e Laços">Python: Funções, Condicionais e Laços</p>
+            </div>
+            <span class="course-provider">Alura</span>
+          </div>
+
+          <div class="course-card">
+            <div class="d-flex align-items-center gap-2">
+              <i class="bi bi-check2-circle" style="color: var(--accent-amber-deep);"></i>
+              <p class="course-title" data-en="Git & GitHub Version Control" data-pt="Git e GitHub">Git e GitHub</p>
+            </div>
+            <span class="course-provider">Alura</span>
+          </div>
+
+          <div class="course-card">
+            <div class="d-flex align-items-center gap-2">
+              <i class="bi bi-check2-circle" style="color: var(--accent-amber-deep);"></i>
+              <p class="course-title" data-en="HTML, CSS & JavaScript" data-pt="HTML, CSS e JavaScript">HTML, CSS e JavaScript</p>
+            </div>
+            <span class="course-provider">ETEC / FATEC</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -669,13 +1152,13 @@
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="projectsGrid">
 
-      <!-- Altave -->
+      <!-- Altave / Hive -->
       <div class="col project-item" data-category="ts-react">
         <div class="card h-100 card-projeto">
-          <img src="img/banner.png" class="card-img-top card-img-contain" alt="Gestão de Ordens de Serviço Altave">
+          <img src="img/banner.png" class="card-img-top card-img-contain" alt="Hive - Gestão de Ordens de Serviço Altave">
           <div class="card-body p-4 d-flex flex-column justify-content-between">
             <div>
-              <h5 class="card-title fw-bold" data-en="Service Orders System — Altave" data-pt="Ordens de Serviço — Altave">Ordens de Serviço — Altave</h5>
+              <h5 class="card-title fw-bold" data-en="Hive - Service Orders System — Altave" data-pt="Hive - Ordens de Serviço — Altave">Hive - Ordens de Serviço — Altave</h5>
               <p class="card-text text-secondary fw-light small mt-2"
                  data-en="2nd semester API project for Altave: service order and ticket management with role-based permissions, dynamic filters, and MySQL/AWS setup."
                  data-pt="Projeto API do 2° semestre para a Altave: gerenciamento de ordens de serviço e chamados com controle de permissões, filtros dinâmicos e base em MySQL/AWS.">
@@ -690,7 +1173,7 @@
             </div>
             <div class="d-flex gap-2 mt-4">
               <button type="button" class="btn btn-sm btn-outline-danger rounded-pill flex-grow-1" onclick="openProjectModal('altave')" data-en="Details" data-pt="Detalhes">Detalhes</button>
-              <a href="https://github.com/leovmatiusso/API2_DSM_SprintingCheetahs" class="btn btn-sm btn-danger rounded-pill px-3" target="_blank" rel="noopener" aria-label="GitHub Altave">
+              <a href="https://github.com/leovmatiusso/API2_DSM_SprintingCheetahs" class="btn btn-sm btn-danger rounded-pill px-3" target="_blank" rel="noopener" aria-label="GitHub Hive Altave">
                 <i class="bi bi-github"></i>
               </a>
             </div>
@@ -818,52 +1301,88 @@
 
   <hr class="fancy-hr">
 
-  <!-- Soft Skills -->
+  <!-- Soft Skills Aprofundadas -->
   <section class="container" id="soft-skills">
-    <h3 class="fw-bold mb-4" data-en="How I Work" data-pt="Como Costumo Trabalhar">Como Costumo Trabalhar</h3>
+    <div class="mb-4">
+      <h6 class="fw-semibold text-uppercase small mb-1" style="color: var(--accent-amber-deep);" data-en="Work Habits & Collaboration" data-pt="Postura & Colaboração">Postura & Colaboração</h6>
+      <h3 class="fw-bold mb-1" data-en="How I Work" data-pt="Como Costumo Trabalhar">Como Costumo Trabalhar</h3>
+      <p class="text-secondary small fw-light mb-0"
+         data-en="How these habits show up across academic APIs, team sprints, and real development tasks."
+         data-pt="Como esses hábitos aparecem na prática em projetos API, sprints em grupo e tarefas do dia a dia.">
+        Como esses hábitos aparecem na prática em projetos API, sprints em grupo e tarefas do dia a dia.
+      </p>
+    </div>
 
     <div class="row g-4">
       <div class="col-md-6">
-        <div class="soft-note">
-          <h6 class="fw-semibold mb-1"><i class="bi bi-people me-2" style="color: var(--accent-red-soft);"></i><span data-en="Teamwork" data-pt="Trabalho em Equipe">Trabalho em Equipe</span></h6>
+        <div class="soft-card">
+          <div class="d-flex align-items-center gap-3 mb-2">
+            <span class="soft-icon-badge"><i class="bi bi-people-fill"></i></span>
+            <h6 class="fw-semibold mb-0" data-en="Teamwork & Alignment" data-pt="Trabalho em Equipe & Alinhamento">Trabalho em Equipe & Alinhamento</h6>
+          </div>
           <p class="text-secondary small fw-light mb-0"
-             data-en="Comfortable working in group projects, dividing tasks clearly and keeping communication straightforward."
-             data-pt="Boa convivência em projetos em grupo, dividindo tarefas com clareza e mantendo a comunicação direta durante as entregas.">
-            Boa convivência em projetos em grupo, dividindo tarefas com clareza e mantendo a comunicação direta durante as entregas.
+             data-en="Comfortable collaborating in multidisciplinary groups, aligning endpoints and UI states early so front-end and back-end move without bottlenecks."
+             data-pt="Boa convivência em times de desenvolvimento, alinhando contratos de API, fluxos de tela e entregas para evitar gargalos entre front-end e back-end.">
+            Boa convivência em times de desenvolvimento, alinhando contratos de API, fluxos de tela e entregas para evitar gargalos entre front-end e back-end.
           </p>
+          <div class="soft-practice">
+            <strong data-en="In practice:" data-pt="Na prática:">Na prática:</strong>
+            <span data-en="Clear commits, shared task tracking, and objective check-ins during team sprints." data-pt="Commits objetivos, divisão clara de responsabilidades e alinhamento rápido nas sprints de grupo.">Commits objetivos, divisão clara de responsabilidades e alinhamento rápido nas sprints de grupo.</span>
+          </div>
         </div>
       </div>
 
       <div class="col-md-6">
-        <div class="soft-note">
-          <h6 class="fw-semibold mb-1"><i class="bi bi-lightbulb me-2" style="color: var(--accent-red-soft);"></i><span data-en="Problem Solving" data-pt="Resolução de Problemas">Resolução de Problemas</span></h6>
+        <div class="soft-card">
+          <div class="d-flex align-items-center gap-3 mb-2">
+            <span class="soft-icon-badge"><i class="bi bi-search-heart"></i></span>
+            <h6 class="fw-semibold mb-0" data-en="Root-Cause Problem Solving" data-pt="Resolução de Problemas por Causa Raiz">Resolução de Problemas por Causa Raiz</h6>
+          </div>
           <p class="text-secondary small fw-light mb-0"
-             data-en="Prefers breaking bugs or feature requirements into smaller pieces to understand the root cause before changing code."
-             data-pt="Costumo quebrar erros e regras de negócio em partes menores para entender a causa do problema antes de sair alterando o código.">
-            Costumo quebrar erros e regras de negócio em partes menores para entender a causa do problema antes de sair alterando o código.
+             data-en="Instead of patching symptoms blindly, I isolate the failing layer—request payload, database query, or component state—to fix the real cause."
+             data-pt="Em vez de remendar sintomas às pressas, costumo isolar a camada com falha—payload, consulta SQL ou estado do componente—até entender a causa real.">
+            Em vez de remendar sintomas às pressas, costumo isolar a camada com falha—payload, consulta SQL ou estado do componente—até entender a causa real.
           </p>
+          <div class="soft-practice">
+            <strong data-en="In practice:" data-pt="Na prática:">Na prática:</strong>
+            <span data-en="Reproducing bugs in small steps and validating edge cases before closing a task." data-pt="Reproduzir o erro em passos menores e testar casos de borda antes de dar a tarefa como pronta.">Reproduzir o erro em passos menores e testar casos de borda antes de dar a tarefa como pronta.</span>
+          </div>
         </div>
       </div>
 
       <div class="col-md-6">
-        <div class="soft-note">
-          <h6 class="fw-semibold mb-1"><i class="bi bi-arrow-repeat me-2" style="color: var(--accent-red-soft);"></i><span data-en="Adaptability" data-pt="Adaptabilidade">Adaptabilidade</span></h6>
+        <div class="soft-card">
+          <div class="d-flex align-items-center gap-3 mb-2">
+            <span class="soft-icon-badge"><i class="bi bi-layers-half"></i></span>
+            <h6 class="fw-semibold mb-0" data-en="Adaptability Across the Stack" data-pt="Adaptabilidade Entre Camadas">Adaptabilidade Entre Camadas</h6>
+          </div>
           <p class="text-secondary small fw-light mb-0"
-             data-en="Quick to pick up new tools and switch between UI, API routes, and database queries when a project calls for it."
-             data-pt="Facilidade para pegar novas ferramentas e transitar entre interface, rotas de API e consultas de banco conforme o projeto exige.">
-            Facilidade para pegar novas ferramentas e transitar entre interface, rotas de API e consultas de banco conforme o projeto exige.
+             data-en="Flexible when switching between interface layout, REST routes, ORM schemas, or environment setup depending on what the feature needs most."
+             data-pt="Facilidade para alternar entre ajustes de interface, rotas REST, schema do banco e configuração de ambiente conforme a prioridade do momento.">
+            Facilidade para alternar entre ajustes de interface, rotas REST, schema do banco e configuração de ambiente conforme a prioridade do momento.
           </p>
+          <div class="soft-practice">
+            <strong data-en="In practice:" data-pt="Na prática:">Na prática:</strong>
+            <span data-en="Moving smoothly between React/TypeScript, Python/Flask, Prisma, and Docker across different projects." data-pt="Transitar entre React/TypeScript, Python/Flask, Prisma e Docker conforme o contexto de cada projeto.">Transitar entre React/TypeScript, Python/Flask, Prisma e Docker conforme o contexto de cada projeto.</span>
+          </div>
         </div>
       </div>
 
       <div class="col-md-6">
-        <div class="soft-note">
-          <h6 class="fw-semibold mb-1"><i class="bi bi-calendar-check me-2" style="color: var(--accent-red-soft);"></i><span data-en="Organization" data-pt="Organização">Organização</span></h6>
+        <div class="soft-card">
+          <div class="d-flex align-items-center gap-3 mb-2">
+            <span class="soft-icon-badge"><i class="bi bi-kanban"></i></span>
+            <h6 class="fw-semibold mb-0" data-en="Organization & Maintainability" data-pt="Organização & Manutenibilidade">Organização & Manutenibilidade</h6>
+          </div>
           <p class="text-secondary small fw-light mb-0"
-             data-en="Attentive to deadlines, repository structure, and leaving code readable for whoever maintains it next."
-             data-pt="Atenção a prazos, organização do repositório e cuidado para deixar o código legível para quem for dar manutenção depois.">
-            Atenção a prazos, organização do repositório e cuidado para deixar o código legível para quem for dar manutenção depois.
+             data-en="Careful with folder structure, naming consistency, and documentation so features remain predictable to expand and maintain over time."
+             data-pt="Cuidado com estrutura de pastas, consistência de nomes e documentação para que o código continue simples de evoluir e manter.">
+            Cuidado com estrutura de pastas, consistência de nomes e documentação para que o código continue simples de evoluir e manter.
           </p>
+          <div class="soft-practice">
+            <strong data-en="In practice:" data-pt="Na prática:">Na prática:</strong>
+            <span data-en="Respecting deadlines, keeping code modular, and leaving clear handoff notes when needed." data-pt="Respeito a prazos, divisão modular de responsabilidades e clareza na entrega de cada etapa.">Respeito a prazos, divisão modular de responsabilidades e clareza na entrega de cada etapa.</span>
+          </div>
         </div>
       </div>
     </div>
@@ -904,7 +1423,7 @@
         </div>
       </div>
       <p class="mt-4 pt-3 mb-0 text-secondary small border-top border-secondary border-opacity-10">
-        &copy; 2026 Gustavo Oliveira.
+        &copy; 2026 Gustavo de Oliveira Azevedo.
       </p>
     </div>
   </footer>
@@ -949,8 +1468,8 @@
 
     const textData = {
       pt: {
-        p1: "Sou estudante de Desenvolvimento de Software Multiplataforma na FATEC Prof. Jessen Vidal, com formação técnica integrada ao ensino médio pela ETEC. Gosto de construir aplicações web organizadas, funcionais e fáceis de manter no dia a dia.",
-        p2: "No front-end, trabalho com <strong>React, TypeScript, HTML, CSS, Tailwind CSS e Bootstrap</strong>. No back-end e banco de dados, utilizo <strong>Node.js, Python (Flask), Prisma ORM, MySQL e Docker</strong> para estruturar APIs e ambientes confiáveis.",
+        p1: "Sou desenvolvedor full-stack e graduando em Desenvolvimento de Software Multiplataforma na <strong>FATEC Prof. Jessen Vidal</strong>, com base técnica integrada ao ensino médio pela <strong>ETEC</strong>. Gosto de transformar regras de negócio em aplicações web claras, responsivas e fáceis de evoluir em equipe.",
+        p2: "Atuo de ponta a ponta no ciclo de desenvolvimento: construo interfaces dinâmicas com <strong>React, TypeScript, Tailwind CSS e Bootstrap</strong>, e estruturo APIs REST, modelagem relacional e ambientes conteinerizados usando <strong>Node.js, Python (Flask), Prisma ORM, MySQL e Docker</strong>.",
         cv: "<i class='bi bi-file-earmark-arrow-down-fill me-2'></i>Baixar Currículo",
         close: "Fechar",
         repo: "Abrir Repositório",
@@ -959,8 +1478,8 @@
         copiedEmail: "E-mail copiado!"
       },
       en: {
-        p1: "I am a Multiplatform Software Development student at FATEC Prof. Jessen Vidal, with an integrated technical high school background from ETEC. I enjoy building organized, functional web applications that are easy to maintain.",
-        p2: "On the front-end, I work with <strong>React, TypeScript, HTML, CSS, Tailwind CSS, and Bootstrap</strong>. On the back-end and database side, I use <strong>Node.js, Python (Flask), Prisma ORM, MySQL, and Docker</strong> to structure APIs and reliable environments.",
+        p1: "I am a full-stack developer and Multiplatform Software Development undergraduate at <strong>FATEC Prof. Jessen Vidal</strong>, with an integrated technical high school background from <strong>ETEC</strong>. I enjoy turning business rules into clear, responsive web applications that are easy to evolve as a team.",
+        p2: "I work end-to-end across the stack: building dynamic interfaces with <strong>React, TypeScript, Tailwind CSS, and Bootstrap</strong>, and structuring REST APIs, relational data models, and containerized environments with <strong>Node.js, Python (Flask), Prisma ORM, MySQL, and Docker</strong>.",
         cv: "<i class='bi bi-file-earmark-arrow-down-fill me-2'></i>Download CV",
         close: "Close",
         repo: "Open Repository",
@@ -972,14 +1491,14 @@
 
     const projectsDetails = {
       altave: {
-        img: "img/altave.png",
-        title: { pt: "Ordens de Serviço — Altave", en: "Service Orders System — Altave" },
+        img: "img/banner.png",
+        title: { pt: "Hive - Ordens de Serviço — Altave", en: "Hive - Service Orders System — Altave" },
         desc: {
-          pt: "Desenvolvido no 2° semestre em parceria com a Altave, o sistema centraliza o gerenciamento de ordens de serviço e chamados técnicos, com controle de permissões, filtros dinâmicos e persistência em MySQL na AWS.",
-          en: "Built in the 2nd semester in partnership with Altave, the system centralizes service orders and technical tickets with role-based permissions, dynamic filters, and MySQL persistence on AWS."
+          pt: "Desenvolvido no 2° semestre em parceria com a Altave, o sistema Hive centraliza o gerenciamento de ordens de serviço e chamados técnicos, com controle de permissões, filtros dinâmicos e persistência em MySQL na AWS.",
+          en: "Built in the 2nd semester in partnership with Altave, Hive centralizes service orders and technical tickets with role-based permissions, dynamic filters, and MySQL persistence on AWS."
         },
         tags: ["TypeScript", "React", "MySQL", "AWS"],
-        url: "https://github.com/gustaft07",
+        url: "https://github.com/leovmatiusso/API2_DSM_SprintingCheetahs",
         isDoc: false
       },
       greencode: {
@@ -990,7 +1509,7 @@
           en: "API focused on electronic waste reverse logistics, built with TypeScript, database modeling and migrations via Prisma ORM, and isolated Docker containers."
         },
         tags: ["TypeScript", "Prisma ORM", "Docker", "REST API"],
-        url: "https://github.com/gustaft07",
+        url: "https://github.com/gustaft07/AV3",
         isDoc: false
       },
       cafe: {
